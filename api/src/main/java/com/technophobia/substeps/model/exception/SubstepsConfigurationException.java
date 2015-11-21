@@ -20,8 +20,10 @@ package com.technophobia.substeps.model.exception;
 
 /**
  * @author ian
- * 
+ * @deprecated should probably be replaced by Typesafe Config's and this no longer thrown.
+ * @since 2.0.0
  */
+@Deprecated
 public class SubstepsConfigurationException extends SubstepsException {
 
     private static final long serialVersionUID = -7081029538420278487L;
