@@ -19,6 +19,7 @@
 
 package com.technophobia.substeps.model;
 
+import com.technophobia.substeps.model.exception.SubstepsException;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
@@ -48,7 +49,7 @@ public enum Configuration {
                 if (systemProperties.hasPath("environment")) {
 
                     // if we have a property set for 'environment' then use it
-                    System.setProperty("config.resource", systemProperties.getString("environment"));
+                    System.setProperty("config.resource", systemProperties.getString("environment") + ".properties");
 
                 } else {
 
@@ -85,6 +86,7 @@ public enum Configuration {
      */
     @Deprecated
     public void addDefaultProperties(final URL url, final String name) {
+        throw new SubstepsException("Unable to add default properties in this way anymore.");
     }
 
     /**
@@ -95,6 +97,7 @@ public enum Configuration {
      */
     @Deprecated
     public void addDefaultProperty(final String key, final Object value) {
+        throw new SubstepsException("Unable to add default properties in this way anymore.");
     }
 
 
