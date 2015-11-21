@@ -11,8 +11,8 @@ The new home for:
 
 Branches
 --------
-* ![Build Status](https://travis-ci.org/G2G3Digital/substeps-framework.svg?branch=master) master
-* ![Build Status](https://travis-ci.org/beercan1989/substeps-framework.svg?branch=feature%2Ftypesafe-config-properties) feature/typesafe-config-properties
+ * master [![Build Status](https://travis-ci.org/G2G3Digital/substeps-framework.svg?branch=master)](https://travis-ci.org/G2G3Digital/substeps-framework)
+ * feature/typesafe-config-properties [![Build Status](https://travis-ci.org/G2G3Digital/substeps-framework.svg?branch=feature%2Ftypesafe-config-properties)](https://travis-ci.org/G2G3Digital/substeps-framework)
 
 2.0.0
 -----
