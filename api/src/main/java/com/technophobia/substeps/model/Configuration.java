@@ -54,7 +54,7 @@ public enum Configuration {
                 } else {
 
                     // else we will not default to using localhost
-                    System.setProperty("config.resource", "localhost");
+                    System.setProperty("config.resource", "localhost.properties");
 
                 }
             }
