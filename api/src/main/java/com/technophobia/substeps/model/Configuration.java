@@ -19,139 +19,140 @@
 
 package com.technophobia.substeps.model;
 
+import com.technophobia.substeps.model.exception.SubstepsException;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigException;
+import com.typesafe.config.ConfigFactory;
+
 import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.commons.configuration.CombinedConfiguration;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.apache.commons.configuration.tree.OverrideCombiner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.technophobia.substeps.model.exception.SubstepsConfigurationException;
+import java.util.function.Supplier;
 
 /**
- * @author ian
- * 
+ * @author jbacon
  */
 public enum Configuration {
 
     INSTANCE;
 
-    private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
+    private final Supplier<Config> configuration;
 
-    private final CombinedConfiguration combinedConfig = new CombinedConfiguration(
-            new OverrideCombiner());
+    Configuration() {
 
+        configuration = () -> {
 
-    private Configuration() {
+            // TODO: Remove the following block once the old format as been deprecated long enough.
+            final Config systemProperties = ConfigFactory.systemProperties();
 
-        initialise();
+            // enable the old format by default, so the new style has to be explicitly enabled.
+            if (!(systemProperties.hasPath("config.resource") || systemProperties.hasPath("config.file") || systemProperties.hasPath("config.url"))) {
 
+                if (systemProperties.hasPath("environment")) {
+
+                    // if we have a property set for 'environment' then use it
+                    System.setProperty("config.resource", systemProperties.getString("environment") + ".properties");
+
+                } else {
+
+                    // else we will not default to using localhost
+                    System.setProperty("config.resource", "localhost.properties");
+
+                }
+            }
+
+            return ConfigFactory.load();
+        };
     }
 
-
-    private void initialise() {
-
-        final String resourceBundleName = resourceBundleName();
-
-        final URL customPropsUrl = Configuration.class.getResource(resourceBundleName);
-
-        if (customPropsUrl != null) {
-
-            try {
-                final PropertiesConfiguration customProps = new PropertiesConfiguration(
-                        customPropsUrl);
-                combinedConfig.addConfiguration(customProps, "customProps");
-
-            } catch (final ConfigurationException e) {
-                logger.error("error loading custom properties", e);
-
-            }
-        }
+    /**
+     * @return a formatted output of all properties including file origins in json format.
+     */
+    public String getConfigurationInfo() {
+        return get().root().render();
     }
 
 
     /**
-     * Implementors of substep libraries should call this with default
-     * properties for their library
-     * 
-     * @param url
-     *            to a properties file containing default values
+     * @return a configuration object containing all the properties.
      */
+    public Config get() {
+        return configuration.get();
+    }
+
+    /**
+     * This method no longer has any affect due to immutability introduced into the new configuration style.
+     *
+     * @since 2.0.0
+     * @deprecated due to the move to the introduction of property immutability.
+     */
+    @Deprecated
     public void addDefaultProperties(final URL url, final String name) {
-
-        if (url != null) {
-            try {
-
-                final PropertiesConfiguration defaultProps = new PropertiesConfiguration(url);
-
-                combinedConfig.addConfiguration(defaultProps, name);
-            } catch (final ConfigurationException e) {
-                logger.error("error loading default properties", e);
-                throw new SubstepsConfigurationException(e);
-            }
-        }
+        throw new SubstepsException("Unable to add default properties in this way anymore.");
     }
 
-    public void addDefaultProperty(String key, Object value){
-
-        combinedConfig.addProperty(key, value);
+    /**
+     * This method no longer has any affect due to immutability introduced into the new configuration style.
+     *
+     * @since 2.0.0
+     * @deprecated due to the move to the introduction of property immutability.
+     */
+    @Deprecated
+    public void addDefaultProperty(final String key, final Object value) {
+        throw new SubstepsException("Unable to add default properties in this way anymore.");
     }
 
 
-    public String getConfigurationInfo() {
-
-        final List<String> configurationNameList = combinedConfig.getConfigurationNameList();
-
-        final StringBuilder buf = new StringBuilder();
-
-        for (final String configurationName : configurationNameList) {
-
-            buf.append("In config: ").append(configurationName).append("\n");
-
-            final org.apache.commons.configuration.Configuration cfg = combinedConfig
-                    .getConfiguration(configurationName);
-
-            final Iterator<String> keys = cfg.getKeys();
-
-            while (keys.hasNext()) {
-                final String key = keys.next();
-
-                final String val = cfg.getString(key);
-
-                buf.append("key: ").append(key).append("\tval: [").append(val).append("]\n");
-            }
-
-            buf.append("\n");
-        }
-        return buf.toString();
-    }
-
-
-    private static String resourceBundleName() {
-        return "/" + System.getProperty("environment", "localhost") + ".properties";
-    }
-
-
+    /**
+     * @param key property key
+     * @return the property value as a String
+     * @throws ConfigException.Missing   if value is absent or null
+     * @throws ConfigException.WrongType if value is not convertible to a String
+     * @since 2.0.0
+     * @deprecated use {@link #get()} instead, there are many better getters available.
+     */
+    @Deprecated
     public String getString(final String key) {
-        return combinedConfig.getString(key);
+        return get().getString(key);
     }
 
 
+    /**
+     * @param key property key
+     * @return the property value as an int
+     * @throws ConfigException.Missing   if value is absent or null
+     * @throws ConfigException.WrongType if value is not convertible to an int
+     * @since 2.0.0
+     * @deprecated use {@link #get()} instead, there are many better getters available.
+     */
+    @Deprecated
     public int getInt(final String key) {
-        return combinedConfig.getInt(key);
+        return get().getInt(key);
     }
 
 
+    /**
+     * @param key property key
+     * @return the property value as a long
+     * @throws ConfigException.Missing   if value is absent or null
+     * @throws ConfigException.WrongType if value is not convertible to a long
+     * @since 2.0.0
+     * @deprecated use {@link #get()} instead, there are many better getters available.
+     */
+    @Deprecated
     public long getLong(final String key) {
-        return combinedConfig.getLong(key);
+        return get().getLong(key);
     }
 
 
+    /**
+     * @param key property key
+     * @return the property value as a boolean
+     * @throws ConfigException.Missing   if value is absent or null
+     * @throws ConfigException.WrongType if value is not convertible to a boolean
+     * @since 2.0.0
+     * @deprecated use {@link #get()} instead, there are many better getters available.
+     */
+    @Deprecated
     public boolean getBoolean(final String key) {
-        return combinedConfig.getBoolean(key);
+        return get().getBoolean(key);
     }
 }

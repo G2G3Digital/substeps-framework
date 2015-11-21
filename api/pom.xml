@@ -14,10 +14,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>commons-configuration</groupId>
-            <artifactId>commons-configuration</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
@@ -28,6 +24,12 @@
         <dependency>
             <groupId>net.sourceforge.findbugs</groupId>
             <artifactId>annotations</artifactId>
+        </dependency>
+
+        <!-- Properties-->
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
         </dependency>
 
         <!-- Test Dependencies -->
