@@ -11,6 +11,13 @@ The new home for:
  [![Maven Central](https://img.shields.io/maven-central/v/com.technophobia.substeps/substeps-ant-runner.png?label=substeps-ant-runner)](https://maven-badges.herokuapp.com/maven-central/com.technophobia.substeps/substeps-ant-runner)  
  [![Maven Central](https://img.shields.io/maven-central/v/com.technophobia.substeps/substeps-glossary-builder.png?label=substeps-glossary)](https://maven-badges.herokuapp.com/maven-central/com.technophobia.substeps/substeps-glossary-builder)
 
+Services under evaluation
+-------------------------
+CodeCov: [![codecov.io](https://codecov.io/github/beercan1989/substeps-framework/coverage.svg?branch=master)](https://codecov.io/github/beercan1989/substeps-framework?branch=master)  
+![codecov.io](https://codecov.io/github/beercan1989/substeps-framework/branch.svg?branch=master)  
+Coveralls: [![Coverage Status](https://coveralls.io/repos/beercan1989/substeps-framework/badge.svg?branch=master&service=github)](https://coveralls.io/github/beercan1989/substeps-framework?branch=master)  
+Codacy: [![Codacy Grade Badge](https://api.codacy.com/project/badge/grade/5c6e489d1b714798b474af0464af3945)](https://www.codacy.com/app/beercan1989/substeps-restdriver)&nbsp;[![Codacy Coverage Badge](https://api.codacy.com/project/badge/coverage/5c6e489d1b714798b474af0464af3945)]
+
 Requirements
 ------------
  * Java 8
