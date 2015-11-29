@@ -4,11 +4,21 @@ sudo: false
 
 jdk: oraclejdk8
 
+before_install:
+  - pip install --user codecov
+  - wget -O codacy-coverage-reporter.jar "http://search.maven.org/remotecontent?filepath=com/codacy/codacy-coverage-reporter/1.0.4/codacy-coverage-reporter-1.0.4-assembly.jar"
+
 script: mvn verify -B
 
-notifications:
-  slack:
-    secure: "g3zr8QxdJdMvaQnYEDfa13oOlseYGPm8IXUAURnu+oNdBMXzvB7yYDCBp/c9kF0QJTwLWOqrGnJyBK3hE4cWJFt+hdvQMXWSVJb4mf3gICDv4s5sVzvvY+Lh/TadiS5tsM1wZZjhIbCkc2HAjM/J3+YOtN/oK6cyOudDJBPByzEjW/PF5/At6ZyMVQo0bOga+zpZhIKVC2L6w4rtXiCh7FsUo7qV+svRxRK8Qm+rsvV3Qp8wpRjSk5HaPVw4L4eOPkMvFyDIhW6HJldtUU8cF4Tabb7whKcjHtNW0t5i+WAlfd0uOdVBNMrw4aMsIJdlgY33TlPVNGHi7YGL4ht22dScfQNtZhGKXgqoS/nFahmLzXDs8rv8RyC4T96Eumb8tPq4ii6eG3j5+FqxMwOuuU93CxijvsSYbqQmwECNphYAm1ftyb4R5cFYAZ/4EFc6tn7KfpF3FZ6YB6W6vj9Q9VOVjxofPR/MAqOGl9Kqe380zvgpg7Oef/cRb2dqT7pi61QzX/gwsvIlRake+n1WI1xobNeC6Msj+6e5uYkpDyJpJZzzPYtAPab3xZvXQGy+53Ykohuxxa+9jR9ybfcdkjPfWKV10EZBvmxw8s2IL/V1dR2ZtBjCibaHIxp60tn4FzuCQWeSEbSJVVpibU8YtkxIpLSoklALjEejDz5GX20="
+after_success:
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./api/target/site/jacoco/jacoco.xml --prefix api/src/main/java/
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./core/target/site/jacoco/jacoco.xml --prefix core/src/main/java/
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./glossary/target/site/jacoco/jacoco.xml --prefix glossary/src/main/java/
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./runner/Junit/target/site/jacoco/jacoco.xml --prefix runner/Junit/src/main/java/
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./runner/Maven/target/site/jacoco/jacoco.xml --prefix runner/Maven/src/main/java/
+  - rm codacy-coverage-reporter.jar
+  - codecov
+  - mvn coveralls:report
 
 deploy:
   - provider: script
@@ -33,3 +43,7 @@ deploy:
     on:
       repo: G2G3Digital/substeps-framework
       tags: true
+
+notifications:
+  slack:
+    secure: "g3zr8QxdJdMvaQnYEDfa13oOlseYGPm8IXUAURnu+oNdBMXzvB7yYDCBp/c9kF0QJTwLWOqrGnJyBK3hE4cWJFt+hdvQMXWSVJb4mf3gICDv4s5sVzvvY+Lh/TadiS5tsM1wZZjhIbCkc2HAjM/J3+YOtN/oK6cyOudDJBPByzEjW/PF5/At6ZyMVQo0bOga+zpZhIKVC2L6w4rtXiCh7FsUo7qV+svRxRK8Qm+rsvV3Qp8wpRjSk5HaPVw4L4eOPkMvFyDIhW6HJldtUU8cF4Tabb7whKcjHtNW0t5i+WAlfd0uOdVBNMrw4aMsIJdlgY33TlPVNGHi7YGL4ht22dScfQNtZhGKXgqoS/nFahmLzXDs8rv8RyC4T96Eumb8tPq4ii6eG3j5+FqxMwOuuU93CxijvsSYbqQmwECNphYAm1ftyb4R5cFYAZ/4EFc6tn7KfpF3FZ6YB6W6vj9Q9VOVjxofPR/MAqOGl9Kqe380zvgpg7Oef/cRb2dqT7pi61QzX/gwsvIlRake+n1WI1xobNeC6Msj+6e5uYkpDyJpJZzzPYtAPab3xZvXQGy+53Ykohuxxa+9jR9ybfcdkjPfWKV10EZBvmxw8s2IL/V1dR2ZtBjCibaHIxp60tn4FzuCQWeSEbSJVVpibU8YtkxIpLSoklALjEejDz5GX20="
