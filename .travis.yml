@@ -11,8 +11,13 @@ before_install:
 script: mvn verify -B
 
 after_success:
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./api/target/site/jacoco/jacoco.xml --prefix api/src/main/java/
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./core/target/site/jacoco/jacoco.xml --prefix core/src/main/java/
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./glossary/target/site/jacoco/jacoco.xml --prefix glossary/src/main/java/
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./runer/Junit/target/site/jacoco/jacoco.xml --prefix runer/Junit/src/main/java/
+  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./runer/Maven/target/site/jacoco/jacoco.xml --prefix runer/Maven/src/main/java/
+  - rm codacy-coverage-reporter.jar
   - codecov
-  - java -jar codacy-coverage-reporter.jar --language Java --coverageReport ./target/site/jacoco/jacoco.xml --prefix src/main/java/
   - mvn coveralls:report
 
 deploy:
