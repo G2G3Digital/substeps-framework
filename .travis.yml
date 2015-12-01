@@ -30,7 +30,7 @@ deploy:
 
   - provider: script
     skip_cleanup: true
-    script: mvn --batch-mode --settings travis/settings.xml release:clean release:prepare release:perform
+    script: travis/mvn-release.bash
     on:
       repo: G2G3Digital/substeps-framework
       tags: true
