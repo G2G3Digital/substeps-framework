@@ -362,8 +362,6 @@
                         <useReleaseProfile>false</useReleaseProfile>
                         <releaseProfiles>release</releaseProfiles>
                         <goals>deploy</goals>
-
-                        <!-- TODO: Add Travis-CI configuration for SCM access -->
                     </configuration>
                 </plugin>
                 <plugin>
@@ -490,8 +488,11 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-
-                                <!-- TODO: Add Travis-CI configuration for GPG access -->
+                                
+                                <configuration>
+                                    <homedir>${project.basedir}/travis/gpg</homedir>
+                                    <executable>gpg2</executable>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
