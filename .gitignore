@@ -19,3 +19,6 @@ classes/
 *.iml
 _build/
 
+release.properties
+travis/gpg/secring.gpg
+travis/gpg/pubring.gpg
