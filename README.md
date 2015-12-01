@@ -14,7 +14,6 @@ The new home for:
 Services under evaluation
 -------------------------
 CodeCov: [![codecov.io](https://codecov.io/github/beercan1989/substeps-framework/coverage.svg?branch=master)](https://codecov.io/github/beercan1989/substeps-framework?branch=master)  
-![codecov.io](https://codecov.io/github/beercan1989/substeps-framework/branch.svg?branch=master)  
 Coveralls: [![Coverage Status](https://coveralls.io/repos/beercan1989/substeps-framework/badge.svg?branch=master&service=github)](https://coveralls.io/github/beercan1989/substeps-framework?branch=master)  
 Codacy: [![Codacy Badge](https://api.codacy.com/project/badge/grade/b9c947d2aabf4e72a00d63d60955fa3e)](https://www.codacy.com/app/beercan1989/substeps-framework)&nbsp;[![Codacy Coverage Badge](https://api.codacy.com/project/badge/coverage/b9c947d2aabf4e72a00d63d60955fa3e)](https://www.codacy.com/app/beercan1989/substeps-framework)
 
