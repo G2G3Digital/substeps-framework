@@ -495,7 +495,7 @@
                                 
                                 <configuration>
                                     <homedir>${project.basedir}/travis/gpg</homedir>
-                                    <executable>gpg2</executable>
+                                    <executable>gpg</executable>
                                 </configuration>
                             </execution>
                         </executions>
