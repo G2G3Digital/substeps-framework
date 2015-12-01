@@ -121,17 +121,6 @@
         <hamcrest.version>1.3</hamcrest.version>
         <mockito.version>2.0.2-beta</mockito.version>
 
-<!--
-        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-        <sonar.phase>verify</sonar.phase>
--->
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-
-<!--
-        <sonar.jacoco.jar>${project.basedir}/jacoco/jacocoagent.jar</sonar.jacoco.jar>
--->
-        <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
-
         <!-- Configuration to enable SCM access via Travis-CI -->
         <project.scm.id>scm.credentials</project.scm.id>
     </properties>
@@ -292,6 +281,7 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.5.201505241946</version>
+
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -313,11 +303,9 @@
                         </goals>
                         <configuration>
                             <rules>
-
                                 <rule>
                                     <element>BUNDLE</element>
                                     <limits>
-
                                         <limit>
                                             <counter>COMPLEXITY</counter>
                                             <value>COVEREDRATIO</value>
@@ -330,7 +318,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
 
         <pluginManagement>
@@ -375,8 +362,6 @@
                         <useReleaseProfile>false</useReleaseProfile>
                         <releaseProfiles>release</releaseProfiles>
                         <goals>deploy</goals>
-
-                        <!-- TODO: Add Travis-CI configuration for SCM access -->
                     </configuration>
                 </plugin>
                 <plugin>
@@ -392,6 +377,15 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin> <!-- Code coverage reporter for coveralls.io -->
+                    <groupId>org.eluder.coveralls</groupId>
+                    <artifactId>coveralls-maven-plugin</artifactId>
+                    <version>4.1.0</version>
+
+                    <configuration>
+                        <repoToken>${env.COVERALLS_TOKEN}</repoToken>
+                    </configuration>
                 </plugin>
 
                 <!-- Just Version Configuration -->
@@ -456,38 +450,6 @@
 
     <profiles>
         <profile>
-            <id>sonar</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-compiler-plugin</artifactId>
-
-                            <configuration>
-                                <compilerArgument>-g</compilerArgument>
-                                <source>${java.version}</source>
-                                <target>${java.version}</target>
-                            </configuration>
-                        </plugin>
-
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-surefire-plugin</artifactId>
-
-                            <configuration>
-                                <argLine>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.reportPath}</argLine>
-                                <includes>
-                                    <include>**/*.java</include>
-                                </includes>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-
-        <profile>
             <id>release</id>
             <build>
                 <plugins>
@@ -526,8 +488,11 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-
-                                <!-- TODO: Add Travis-CI configuration for GPG access -->
+                                
+                                <configuration>
+                                    <homedir>${project.basedir}/travis/gpg</homedir>
+                                    <executable>gpg2</executable>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

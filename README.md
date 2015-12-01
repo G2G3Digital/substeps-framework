@@ -11,6 +11,12 @@ The new home for:
  [![Maven Central](https://img.shields.io/maven-central/v/com.technophobia.substeps/substeps-ant-runner.png?label=substeps-ant-runner)](https://maven-badges.herokuapp.com/maven-central/com.technophobia.substeps/substeps-ant-runner)  
  [![Maven Central](https://img.shields.io/maven-central/v/com.technophobia.substeps/substeps-glossary-builder.png?label=substeps-glossary)](https://maven-badges.herokuapp.com/maven-central/com.technophobia.substeps/substeps-glossary-builder)
 
+Services under evaluation
+-------------------------
+CodeCov: [![codecov.io](https://codecov.io/github/beercan1989/substeps-framework/coverage.svg?branch=master)](https://codecov.io/github/beercan1989/substeps-framework?branch=master)  
+Coveralls: [![Coverage Status](https://coveralls.io/repos/beercan1989/substeps-framework/badge.svg?branch=master&service=github)](https://coveralls.io/github/beercan1989/substeps-framework?branch=master)  
+Codacy: [![Codacy Badge](https://api.codacy.com/project/badge/grade/b9c947d2aabf4e72a00d63d60955fa3e)](https://www.codacy.com/app/beercan1989/substeps-framework)&nbsp;[![Codacy Coverage Badge](https://api.codacy.com/project/badge/coverage/b9c947d2aabf4e72a00d63d60955fa3e)](https://www.codacy.com/app/beercan1989/substeps-framework)
+
 Requirements
 ------------
  * Java 8
