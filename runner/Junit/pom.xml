@@ -1,5 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.technophobia.substeps</groupId>
@@ -7,54 +8,58 @@
         <version>2.0.0-SNAPSHOT</version>
     </parent>
 
-	<artifactId>substeps-junit-runner</artifactId>
+    <artifactId>substeps-junit-runner</artifactId>
 
-	<name>SubSteps JUnit Runner</name>
-	<description>A junit runner for substeps</description>
+    <name>SubSteps JUnit Runner</name>
+    <description>A junit runner for substeps</description>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
+    <properties>
+        <!-- Root of the project -->
+        <root-path>../..</root-path>
+    </properties>
 
-				<executions>
-					<execution>
-						<id>extract-core-substep-test-code</id>
-
-						<phase>test-compile</phase>
-						<goals>
-							<goal>unpack-dependencies</goal>
-						</goals>
-
-						<configuration>
-							<includeArtifactIds>substeps-core</includeArtifactIds>
-							<includeTypes>test-jar</includeTypes>
-							<outputDirectory>${project.build.directory}/core-tests</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>com.technophobia.substeps</groupId>
-			<artifactId>substeps-runner-common</artifactId>
-		</dependency>
-
-		<!-- Although this has a dependency on core it is important that the scope is TEST -->
-		<dependency>
-			<groupId>com.technophobia.substeps</groupId>
-			<artifactId>substeps-core</artifactId>
-			<scope>test</scope>
-		</dependency>
+    <dependencies>
         <dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+            <groupId>com.technophobia.substeps</groupId>
+            <artifactId>substeps-runner-common</artifactId>
+        </dependency>
 
+        <!-- Although this has a dependency on core it is important that the scope is TEST -->
+        <dependency>
+            <groupId>com.technophobia.substeps</groupId>
+            <artifactId>substeps-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+
+                <executions>
+                    <execution>
+                        <id>extract-core-substep-test-code</id>
+
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+
+                        <configuration>
+                            <includeArtifactIds>substeps-core</includeArtifactIds>
+                            <includeTypes>test-jar</includeTypes>
+                            <outputDirectory>${project.build.directory}/core-tests</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

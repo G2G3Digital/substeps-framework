@@ -12,6 +12,11 @@
     <name>SubSteps Ant Runner</name>
     <description>An ant task for substeps</description> 
 
+    <properties>
+        <!-- Root of the project -->
+        <root-path>../..</root-path>
+    </properties>
+
     <dependencies>
 	    <dependency>
 			<groupId>org.apache.ant</groupId>

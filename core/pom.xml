@@ -12,6 +12,11 @@
 
     <name>SubSteps Core</name>
 
+    <properties>
+        <!-- Root of the project -->
+        <root-path>..</root-path>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.technophobia.substeps</groupId>
@@ -157,20 +162,6 @@
     </reporting>
 
     <profiles>
-<!--
-        <profile>
-            <id>sonar</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>sonar-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
--->
-
 		<profile>
 			<id>self-test-report</id> <!-- TODO - Review this placement -->
             <activation>
