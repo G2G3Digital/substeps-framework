@@ -119,9 +119,6 @@
         <hamcrest.version>1.3</hamcrest.version>
         <mockito.version>2.0.2-beta</mockito.version>
 
-        <!-- Configuration to enable SCM access via Travis-CI -->
-        <project.scm.id>scm.credentials</project.scm.id>
-
         <!-- Root of the project -->
         <root-path>.</root-path>
     </properties>
