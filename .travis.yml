@@ -12,17 +12,9 @@ script: mvn verify -B
 deploy:
   - provider: script
     skip_cleanup: true
-    script: mvn deploy --settings travis/settings.xml
+    script: travis/mvn-deploy.bash
     on:
       repo: G2G3Digital/substeps-framework
-      branch: master
-
-  - provider: script
-    skip_cleanup: true
-    script: travis/mvn-release.bash
-    on:
-      repo: G2G3Digital/substeps-framework
-      tags: true
 
   - provider: releases
     skip_cleanup: true

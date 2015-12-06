@@ -133,6 +133,10 @@
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
 
     <dependencyManagement>
@@ -494,7 +498,7 @@
                                 
                                 <configuration>
                                     <homedir>${root-path}/travis/gpg</homedir>
-                                    <executable>gpg2</executable>
+                                    <executable>gpg</executable>
                                 </configuration>
                             </execution>
                         </executions>

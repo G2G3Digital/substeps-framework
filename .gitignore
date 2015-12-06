@@ -19,6 +19,7 @@ classes/
 *.iml
 _build/
 
+release.properties
 travis/gpg/pubring.gpg
 travis/gpg/secring.gpg
 travis/gpg/trustdb.gpg
