@@ -182,7 +182,7 @@
 					<plugin>
 						<groupId>com.technophobia.substeps</groupId>
 						<artifactId>substeps-maven-plugin</artifactId>
-                        <version>${stable.substeps.version}</version>
+                        <version>1.1.3</version>
 
 						<executions>
 
@@ -254,7 +254,7 @@
                             <dependency>
                                 <groupId>com.technophobia.substeps</groupId>
                                 <artifactId>webdriver-substeps</artifactId>
-                                <version>${stable.substeps.version}</version>
+                                <version>1.1.3</version>
                             </dependency>
                             <dependency>
                                 <groupId>com.technophobia.substeps</groupId>
