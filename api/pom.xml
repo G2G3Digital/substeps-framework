@@ -12,6 +12,11 @@
 
     <name>SubSteps API</name>
 
+    <properties>
+        <!-- Root of the project -->
+        <root-path>..</root-path>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>commons-configuration</groupId>
@@ -31,7 +36,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>

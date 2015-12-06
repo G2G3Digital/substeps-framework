@@ -123,6 +123,9 @@
 
         <!-- Configuration to enable SCM access via Travis-CI -->
         <project.scm.id>scm.credentials</project.scm.id>
+
+        <!-- Root of the project -->
+        <root-path>.</root-path>
     </properties>
 
     <distributionManagement>
@@ -494,7 +497,7 @@
                                 </goals>
                                 
                                 <configuration>
-                                    <homedir>${project.basedir}/travis/gpg</homedir>
+                                    <homedir>${root-path}/travis/gpg</homedir>
                                     <executable>gpg</executable>
                                 </configuration>
                             </execution>

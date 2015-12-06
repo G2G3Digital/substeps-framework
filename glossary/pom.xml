@@ -13,9 +13,10 @@
 
     <name>SubSteps Glossary Builder</name>
 
-
     <properties>
         <maven.version>3.3.9</maven.version>
+        <!-- Root of the project -->
+        <root-path>..</root-path>
     </properties>
 
     <prerequisites>

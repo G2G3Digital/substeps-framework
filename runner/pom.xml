@@ -21,6 +21,11 @@
         <module>Junit</module>
     </modules>
 
+    <properties>
+        <!-- Root of the project -->
+        <root-path>..</root-path>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.technophobia.substeps</groupId>

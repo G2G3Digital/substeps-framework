@@ -12,4 +12,8 @@
     <name>SubSteps Runner Common</name>
     <description>Contains common components for running substeps</description>  
 
+    <properties>
+        <!-- Root of the project -->
+        <root-path>../..</root-path>
+    </properties>
 </project>
