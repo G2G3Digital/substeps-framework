@@ -3,7 +3,7 @@
 
     <groupId>com.technophobia.substeps</groupId>
     <artifactId>substeps-framework</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>SubSteps Framework</name>
@@ -14,7 +14,7 @@
         <connection>scm:git:git@github.com:G2G3Digital/substeps-framework.git</connection>
         <developerConnection>scm:git:git@github.com:G2G3Digital/substeps-framework.git</developerConnection>
         <url>git@github.com:G2G3Digital/substeps-framework.git</url>
-      <tag>2.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <licenses>
