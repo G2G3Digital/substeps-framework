@@ -348,9 +348,7 @@
                         <tags>
                             <javaVersion>${java.version}</javaVersion>
                         </tags>
-
-                        <!-- TODO: Turn back on after first Travis release -->
-                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
                     </configuration>
                 </plugin>
                 <plugin>
