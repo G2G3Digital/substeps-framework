@@ -19,3 +19,8 @@ classes/
 *.iml
 _build/
 
+**/pom.xml.releaseBackup
+**/release.properties
+travis/gpg/pubring.gpg
+travis/gpg/secring.gpg
+travis/gpg/trustdb.gpg
